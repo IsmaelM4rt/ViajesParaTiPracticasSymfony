@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ proveedor.nombre}}{% endblock %}
+
+{% block body %}
+    <h1>{{ proveedor.nombre}}</h1>
+    <p>{{proveedor.mail}}</p>
+    <p>{{proveedor.telefono}}</p>
+    {% if proveedor.activo == 1 %}
+    <p>Activo</p>
+    {% else %}
+    <p>Inactivo</p>
+    {% endif %}
+    {% if proveedor.tipo == 1 %}
+    <p>Hotel</p>
+    {% elseif proveedor.tipo == 2 %}
+    <p>Pista</p>
+    {% else %}
+    <p>Complemento</p>
+    {% endif %}
+    <p>{{proveedor.creado|date("F j, Y, g:i a")}}</p>
+    <p>{{proveedor.editado|date("F j, Y, g:i a")}}</p>
+    <hr>
+    <a href="/">Volver</a>
+{% endblock %}

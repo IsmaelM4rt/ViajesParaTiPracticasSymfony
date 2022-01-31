@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proveedores Viajes Para Ti{% endblock %}
+
+{% block body %}
+    {% if proveedores %}
+        <table id="proveedores" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Mail</th>
+                    <th>Telefono</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for proveedor in proveedores %}
+                 <tr>
+                    <td>{{proveedor.nombre}}</td>
+                    <td>{{proveedor.mail}}</td>
+                    <td>{{proveedor.telefono}}</td>
+                    {% if proveedor.tipo == 1 %}
+                    <td>Hotel</td>
+                    {% elseif proveedor.tipo == 2 %}
+                    <td>Pista</td>
+                    {% else %}
+                    <td>Complemento</td>
+                    {% endif %}
+                    <td>
+                        <a href="/proveedor/{{proveedor.id}}" class="btn btn-dark">Ver</a>
+                        <a href="/proveedor/editar/{{proveedor.id}}" class="btn btn-light">Editar</a>
+                        <a href="#" class="btn btn-danger delete-proveedor" data-id="{{proveedor.id}}">Borrar</a>
+                    </td>
+                 </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay proveedores para mostrar</p>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+ <script src="/js/main.js"></script>
+{% endblock %}
